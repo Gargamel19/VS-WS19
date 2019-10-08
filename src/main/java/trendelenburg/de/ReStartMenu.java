@@ -1,42 +1,35 @@
-package example;
+package trendelenburg.de;
 
 import edu.cads.bai5.vsp.tron.view.ITronView;
 import edu.cads.bai5.vsp.tron.view.ViewUtility;
-import example.Utils.UtilBiker;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.*;
-
-import static example.MainApp.startPlaying;
-
-public class StartMenu extends VBox {
+public class ReStartMenu extends VBox {
     private final ITronView view;
-    private final Label labelReady;
     private final Button btnStart;
+    private Label labelReady;
 
-    public StartMenu(String stylesheet, ITronView view) {
+    public ReStartMenu(String stylesheet, ITronView view) {
         super(20.0);
         this.getStylesheets().add(stylesheet);
         this.setAlignment(Pos.CENTER);
 
         this.view = view;
 
-        labelReady = new Label("Ready?");
+        labelReady = new Label("RAVANTSCHE?");
         labelReady.setStyle("-fx-text-fill: " + ViewUtility.getHexTriplet(Color.PAPAYAWHIP.brighter()) + ";");
 
-        btnStart = new Button("Start Game");
+        btnStart = new Button("REVANTSCHE");
         btnStart.setOnAction(event -> {
+            view.clear();
             System.out.println("click!");
             view.hideOverlays();
-            startPlaying();
+            MainApp.startPlaying();
         });
-
         this.getChildren().add(labelReady);
         this.getChildren().add(btnStart);
     }

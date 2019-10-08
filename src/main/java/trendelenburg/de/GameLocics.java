@@ -1,6 +1,6 @@
-package example;
+package trendelenburg.de;
 
-import example.Utils.UtilBiker;
+import trendelenburg.de.Utils.UtilBiker;
 
 public class GameLocics {
 

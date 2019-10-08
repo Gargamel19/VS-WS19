@@ -1,4 +1,4 @@
-package example;
+package trendelenburg.de;
 
 import edu.cads.bai5.vsp.tron.view.ITronView;
 import edu.cads.bai5.vsp.tron.view.TronView;

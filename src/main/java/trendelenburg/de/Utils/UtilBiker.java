@@ -1,8 +1,8 @@
-package example.Utils;
+package trendelenburg.de.Utils;
 
 import edu.cads.bai5.vsp.tron.view.Coordinate;
-import example.Biker;
-import example.MainApp;
+import trendelenburg.de.Biker;
+import trendelenburg.de.MainApp;
 
 /**
  * a UTIL class to compute with the Biker Instances

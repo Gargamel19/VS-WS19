@@ -30,7 +30,7 @@
                         <transformers>
                             <transformer
                                     implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <mainClass>example.MainApp</mainClass>
+                                <mainClass>trendelenburg.de.MainApp</mainClass>
                             </transformer>
                         </transformers>
                     </configuration>

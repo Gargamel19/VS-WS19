@@ -1,4 +1,4 @@
-package example;
+package trendelenburg.de;
 
 /** Annoying workaround!
  * See https://stackoverflow.com/questions/52653836/maven-shade-javafx-runtime-components-are-missing

@@ -1,7 +1,7 @@
-package example;
+package trendelenburg.de;
 
 import edu.cads.bai5.vsp.tron.view.ITronView;
-import example.Utils.UtilBiker;
+import trendelenburg.de.Utils.UtilBiker;
 
 /**
  * this Thread is ticking in the ivery "TICKRATE" ms and checks every tick, if only 1 or no Biker is alive

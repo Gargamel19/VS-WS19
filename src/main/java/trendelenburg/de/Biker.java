@@ -1,4 +1,4 @@
-package example;
+package trendelenburg.de;
 
 import edu.cads.bai5.vsp.tron.view.Coordinate;
 import javafx.scene.paint.Color;

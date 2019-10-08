@@ -1,4 +1,4 @@
-package example;
+package trendelenburg.de;
 
 import javafx.stage.Stage;
 
