@@ -1,6 +1,6 @@
 package trendelenburg.de;
 
-import trendelenburg.de.Utils.UtilBiker;
+import trendelenburg.de.Utils.BikerUtil;
 
 public class GameLocics {
 
@@ -10,10 +10,10 @@ public class GameLocics {
 
     public static void end(){
         MainApp.stopPlaying();
-        if(UtilBiker.getAmmoundOfAlives()==1){
-            System.out.println(UtilBiker.getlastAliveBiker().getName() + " winns :)");
+        if(BikerUtil.getAmmoundOfAlives()==1){
+            System.out.println(BikerUtil.getlastAliveBiker().getName() + " winns :)");
             MainApp.restartPlaying();
-        }else if(UtilBiker.getAmmoundOfAlives()==0){
+        }else if(BikerUtil.getAmmoundOfAlives()==0){
             System.out.println("DRAWN");
             MainApp.restartPlaying();
         }

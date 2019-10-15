@@ -8,7 +8,7 @@ import trendelenburg.de.MainApp;
  * a UTIL class to compute with the Biker Instances
  */
 
-public class UtilBiker {
+public class BikerUtil {
 
     /**
      * move the Player one tick in the Direction of the BIKER.getDirection()

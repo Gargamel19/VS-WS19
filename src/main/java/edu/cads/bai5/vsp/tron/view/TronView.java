@@ -117,6 +117,16 @@ public class TronView implements ITronView{
     }
 
     @Override
+    public void hideOverlay(String name) {
+        if(!overlays.keySet().contains(name)){
+            throw new IllegalArgumentException("An overlay mapped to " + name + " does not exist. Registered are " + overlays.keySet());
+        }
+
+        overlays.get("fog").setVisible(true);
+        overlays.get(name).setVisible(false);
+    }
+
+    @Override
     public void showOverlay(String name) {
         if(!overlays.keySet().contains(name)){
             throw new IllegalArgumentException("An overlay mapped to " + name + " does not exist. Registered are " + overlays.keySet());

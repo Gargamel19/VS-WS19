@@ -1,7 +1,7 @@
 package trendelenburg.de;
 
 import edu.cads.bai5.vsp.tron.view.ITronView;
-import trendelenburg.de.Utils.UtilBiker;
+import trendelenburg.de.Utils.BikerUtil;
 
 /**
  * this Thread is ticking in the ivery "TICKRATE" ms and checks every tick, if only 1 or no Biker is alive
@@ -25,8 +25,8 @@ public class TickThread extends Thread{
                     for (Biker eachBiker: MainApp.biker) {
                         if(eachBiker.isAlive()){
                             if(MainApp.isStarted()){
-                                UtilBiker.computeBiker(eachBiker);
-                                if(!UtilBiker.isOutside(eachBiker.getLastPosition())){
+                                BikerUtil.computeBiker(eachBiker);
+                                if(!BikerUtil.isOutside(eachBiker.getLastPosition())){
                                     view.draw(eachBiker.getTrail(), eachBiker.getPlayerColor());
                                     eachBiker.setLastDirection(eachBiker.getDirection());
                                 }
@@ -37,7 +37,7 @@ public class TickThread extends Thread{
                         }
 
                     }
-                    if(UtilBiker.getAmmoundOfAlives()<=1){
+                    if(BikerUtil.getAmmoundOfAlives()<=1){
                         GameLocics.end();
                     }
                 }

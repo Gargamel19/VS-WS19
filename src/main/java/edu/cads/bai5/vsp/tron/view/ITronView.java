@@ -62,6 +62,12 @@ public interface ITronView {
     /**
      * Hides all Overlays
      */
+
+    void hideOverlay(String name);
+
+    /**
+     * Hides all Overlays
+     */
     void hideOverlays();
 
     /**

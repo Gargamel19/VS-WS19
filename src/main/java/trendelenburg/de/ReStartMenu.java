@@ -13,14 +13,18 @@ public class ReStartMenu extends VBox {
     private final Button btnStart;
     private Label labelReady;
 
-    public ReStartMenu(String stylesheet, ITronView view) {
+    public ReStartMenu(String stylesheet, ITronView view, Biker biker) {
         super(20.0);
         this.getStylesheets().add(stylesheet);
         this.setAlignment(Pos.CENTER);
 
         this.view = view;
 
-        labelReady = new Label("RAVANTSCHE?");
+        if(biker==null){
+            labelReady = new Label("nobuddy has win! RAVANTSCHE?");
+        }else{
+            labelReady = new Label(biker.getName()+ " has won! RAVANTSCHE?");
+        }
         labelReady.setStyle("-fx-text-fill: " + ViewUtility.getHexTriplet(Color.PAPAYAWHIP.brighter()) + ";");
 
         btnStart = new Button("REVANTSCHE");
