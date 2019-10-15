@@ -3,8 +3,10 @@ package trendelenburg.de;
 import edu.cads.bai5.vsp.tron.view.ITronView;
 import edu.cads.bai5.vsp.tron.view.TronView;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import trendelenburg.de.Utils.BikerUtil;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,13 +14,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 public class MainApp extends Application {
 
     public final static String VIEW_CONFIG_FILE = "view.properties";
-    public static List<Biker> biker = new ArrayList<Biker>();
-
-    public static final int TICKRATE = 300;
+    public static List<Biker> biker = new ArrayList<>();
 
     private static ITronView view = null;
     private static Stage stage = null;
@@ -31,6 +32,7 @@ public class MainApp extends Application {
 
     public static int ROWS;
     public static int COLUMNS;
+    public static int TICKRATE = 300;
 
     public static boolean isStarted() {
         return started;
@@ -45,9 +47,7 @@ public class MainApp extends Application {
         StartMenu startMenu = new StartMenu("menu.css", view);
         view.registerOverlay("start", startMenu);
 
-        // Build and register the Restart Menu
-        reStartMenu = new ReStartMenu("menu.css", view);
-        view.registerOverlay("REVANTSCHE?", reStartMenu);
+
 
         // init view and show start menu
         view.init();
@@ -63,6 +63,15 @@ public class MainApp extends Application {
 
     }
 
+    public static void showRestartMenue(Biker biker){
+        Platform.runLater(() -> {
+
+            reStartMenu = new ReStartMenu("menu.css", view, biker);
+            view.registerOverlay("REVANTSCHE?", reStartMenu);
+            view.showOverlay("REVANTSCHE?");
+        });
+    }
+
     public static void main(String[] args) {
 
         //Loading Inforamtions from Properties File
@@ -73,6 +82,7 @@ public class MainApp extends Application {
 
             ROWS = Integer.parseInt(prop.getProperty("rows"));
             COLUMNS = Integer.parseInt(prop.getProperty("columns"));
+            TICKRATE = Integer.parseInt(prop.getProperty("ticks"));
 
         }catch (FileNotFoundException fnfe){
             System.out.println("File: \"" + VIEW_CONFIG_FILE + "\" not found ");
@@ -89,15 +99,18 @@ public class MainApp extends Application {
      */
     public static void setupGame(){
 
-        biker = new ArrayList<>();
+        ArrayList<Biker> tempBiker = new ArrayList<>();
+        Random random = new Random();
+        for (Biker biker: biker){
+            int x = random.nextInt(MainApp.COLUMNS-Math.round(MainApp.COLUMNS/5)) + MainApp.COLUMNS/5/2;
+            int y = random.nextInt(MainApp.ROWS-Math.round(MainApp.ROWS/5)) + MainApp.ROWS/5/2;
+            tempBiker.add(new Biker(x, y, biker.getPlayerColor(), biker.getName()));
+        }
+        biker=tempBiker;
 
-        Biker bike1 = new Biker(Math.round(COLUMNS*2/3), Math.round(ROWS/2), Color.RED, "Player 1");
-        Biker bike2 = new Biker(Math.round(COLUMNS/3), Math.round(ROWS/2), Color.YELLOW, "Player 2");
+        view.clear();
 
-        biker.add(bike1);
-        biker.add(bike2);
-
-        new BikeController("w", "s", "a", "d", bike2, "p", "ö", "l", "ä", bike1, stage);
+        new BikeController("w", "s", "a", "d", "p", "ö", "l", "ä", stage);
 
 
     }
@@ -126,7 +139,12 @@ public class MainApp extends Application {
     public static void restartPlaying(){
         stopPlaying();
 
-        view.showOverlay("REVANTSCHE?");
+
+        if(BikerUtil.getAmmoundOfAlives()==1){
+            showRestartMenue(BikerUtil.getlastAliveBiker());
+        }else{
+            showRestartMenue(null);
+        }
 
         setupGame();
 
